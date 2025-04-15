@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 4</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+        <style>
+            figure {
+             width: 100%; 
+             height: 680px;
+             margin: 0; 
+             overflow: hidden; 
+             min-width: 600px;
+            }
+            figure img { 
+             width: 100%; 
+             margin: -10% 0 0 0; 
+            }
+            main {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            }
+
+            main > div {
+            position: absolute;
+            border: 2px solid #9479FF;
+            background-color: rgba(251, 198, 245, 0.8);
+            box-shadow: 9px 9px 12px rgba(129, 78, 149, 0.3);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            }
+            main > div:nth-child(1) { top: 30%; left: 60%; width: 50px; height: 40px; }
+            main > div:nth-child(2) { top: 25%; left: 65%; width: 60px; height: 50px; }
+            main > div:nth-child(3) { top: 20%; left: 70%; width: 70px; height: 60px; }
+            main > div:nth-child(4) {
+            top: 15%; left: 76%; width: 150px; height: 75px;
+            border-radius: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            font-family: sans-serif;
+            }
+            body:hover main > div { opacity: 1; }
+            main > div:nth-child(1) { transition-delay: 0.2s; }
+            main > div:nth-child(2) { transition-delay: 0.4s; }
+            main > div:nth-child(3) { transition-delay: 0.6s; }
+            main > div:nth-child(4) { transition-delay: 0.8s; }
+
+            body:not(:hover) main > div { opacity: 0; }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4, Комикс
+        </header>
+
+        <figure>
+            <div class="picture">
+                <img src="C:\Users\Лиза\Desktop\!\НГТУ\WEB\Lab-1\web-front-labs\nyusha.png" alt="Nyusha">
+            </div>
+        </figure>
+
+        <main>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>Писк моды!</div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Артемченко Елизавета Сергеевна. Облако тегов с анимацией</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                font-family: Arial, sans-serif;
+                position: relative;
+                overflow: hidden;
+            }
+            main {
+                height: calc(100vh - 60px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
+            .tag-cloud {
+                position: relative;
+                width: 80%;
+                height: 70%;
+            }
+            .tag {
+                position: absolute;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.3s, text-shadow 0.3s;
+                z-index: 0;
+                animation-duration: 2s;
+                animation-timing-function: linear; 
+                animation-iteration-count: infinite;
+            }
+            .tag:hover {
+                transform: scale(1.5) rotate(0deg) !important;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+                z-index: 10;
+                animation-play-state: paused;
+            }
+
+            .N1 { top: 20%; left: 10%; font-size: 22px; color: #D32F2F; transform: rotate(-5deg); animation-name: float1; }
+            .N2 { top: 60%; left: 70%; font-size: 28px; color: #7B1FA2; transform: rotate(10deg); animation-name: float2; }
+            .N3 { top: 70%; left: 25%; font-size: 24px; color: #4b7ebb; transform: rotate(-14deg); animation-name: float3; }
+            .N4 { top: 40%; left: 80%; font-size: 32px; color: #388E3C; transform: rotate(3deg); animation-name: float4; }
+            .N5 { top: 10%; left: 60%; font-size: 26px; color: #F57C00; transform: rotate(7deg); animation-name: float5; }
+            .N6 { top: 80%; left: 40%; font-size: 30px; color: #5D4037; transform: rotate(-3deg); animation-name: float6; }
+            .N7 { top: 5%; left: 25%; font-size: 20px; color: #4527A0; transform: rotate(4deg); animation-name: float7; }
+            .N8 { top: 40%; left: 50%; font-size: 35px; color: #00796B; transform: rotate(-10deg); animation-name: float8; }
+            .N9 { top: 50%; left: 5%; font-size: 22px; color: #5eb530; transform: rotate(8deg); animation-name: float9; }
+            .N10 { top: 15%; left: 40%; font-size: 18px; color: #826018; transform: rotate(-6deg); animation-name: float10; }
+            .N11 { top: 65%; left: 8%; font-size: 26px; color: #3e46f0; transform: rotate(-3deg); animation-name: float11; }
+            .N12 { top: 25%; left: 85%; font-size: 20px; color: #009688; transform: rotate(-13deg); animation-name: float12; }
+            .N13 { top: 35%; left: 60%; font-size: 33px; color: #b5306a; transform: rotate(11deg); animation-name: float13; }
+            .N14 { top: 55%; left: 35%; font-size: 25px; color: #E64A19; transform: rotate(-4deg); animation-name: float14; }
+            .N15 { top: 40%; left: 15%; font-size: 27px; color: #d53ef0; transform: rotate(12deg); animation-name: float15; }
+            .N16 { top: 76%; left: 50%; font-size: 27px; color: #e2f15d; transform: rotate(12deg); animation-name: float16; }
+
+            @keyframes float1 {
+                0% { transform: translate(0, 0) rotate(-5deg); }
+                50% { transform: translate(10px, 5px) rotate(-5deg); }
+                100% { transform: translate(0, 0) rotate(-5deg); }
+            }
+            @keyframes float2 {
+                0% { transform: translate(0, 0) rotate(10deg); }
+                50% { transform: translate(-5px, 15px) rotate(10deg); }
+                100% { transform: translate(0, 0) rotate(10deg); }
+            }
+            @keyframes float3 {
+                0% { transform: translate(0, 0) rotate(-14deg); }
+                50% { transform: translate(10px, -10px) rotate(-14deg); }
+                100% { transform: translate(0, 0) rotate(-14deg); }
+            }
+            @keyframes float4 {
+                0% { transform: translate(0, 0) rotate(3deg); }
+                50% { transform: translate(5px, -5px) rotate(3deg); }
+                100% { transform: translate(0, 0) rotate(3deg); }
+            }
+            @keyframes float5 {
+                0% { transform: translate(0, 0) rotate(7deg); }
+                50% { transform: translate(-10px, -5px) rotate(7deg); }
+                100% { transform: translate(0, 0) rotate(7deg); }
+            }
+            @keyframes float6 {
+                0% { transform: translate(0, 0) rotate(-3deg); }
+                50% { transform: translate(5px, 10px) rotate(-3deg); }
+                100% { transform: translate(0, 0) rotate(-3deg); }
+            }
+            @keyframes float7 {
+                0% { transform: translate(0, 0) rotate(4deg); }
+                50% { transform: translate(-5px, 5px) rotate(4deg); }
+                100% { transform: translate(0, 0) rotate(4deg); }
+            }
+            @keyframes float8 {
+                0% { transform: translate(0, 0) rotate(-10deg); }
+                50% { transform: translate(10px, 10px) rotate(-10deg); }
+                100% { transform: translate(0, 0) rotate(-10deg); }
+            }
+            @keyframes float9 {
+                0% { transform: translate(0, 0) rotate(8deg); }
+                50% { transform: translate(-5px, 5px) rotate(8deg); }
+                100% { transform: translate(0, 0) rotate(8deg); }
+            }
+            @keyframes float10 {
+                0% { transform: translate(0, 0) rotate(-6deg); }
+                50% { transform: translate(-10px, 5px) rotate(-6deg); }
+                100% { transform: translate(0, 0) rotate(-6deg); }
+            }
+            @keyframes float11 {
+                0% { transform: translate(0, 0) rotate(-3deg); }
+                50% { transform: translate(10px, -5px) rotate(-3deg); }
+                100% { transform: translate(0, 0) rotate(-3deg); }
+            }
+            @keyframes float12 {
+                0% { transform: translate(0, 0) rotate(-13deg); }
+                50% { transform: translate(-5px, -10px) rotate(-13deg); }
+                100% { transform: translate(0, 0) rotate(-13deg); }
+            }
+            @keyframes float13 {
+                0% { transform: translate(0, 0) rotate(11deg); }
+                50% { transform: translate(-5px, 5px) rotate(11deg); }
+                100% { transform: translate(0, 0) rotate(11deg); }
+            }
+            @keyframes float14 {
+                0% { transform: translate(0, 0) rotate(-4deg); }
+                50% { transform: translate(-10px, 5px) rotate(-4deg); }
+                100% { transform: translate(0, 0) rotate(-4deg); }
+            }
+            @keyframes float15 {
+                0% { transform: translate(0, 0) rotate(12deg); }
+                50% { transform: translate(10px, -5px) rotate(12deg); }
+                100% { transform: translate(0, 0) rotate(12deg); }
+            }
+            @keyframes float16 {
+                0% { transform: translate(0, 0) rotate(12deg); }
+                50% { transform: translate(-5px, -10px) rotate(12deg); }
+                100% { transform: translate(0, 0) rotate(12deg); }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+        </header>
+
+        <main>
+            <div class="tag-cloud">
+                <div class="tag N1">Криминальное чтиво</div>
+                <div class="tag N2">Ума Турман</div>
+                <div class="tag N3">Бешеные псы</div>
+                <div class="tag N4">Джанго освобождённый</div>
+                <div class="tag N5">Бесславные ублюдки</div>
+                <div class="tag N6">Омерзительная восьмёрка</div>
+                <div class="tag N7">Джеки Браун</div>
+                <div class="tag N8">Кино</div>
+                <div class="tag N9">Сценарист</div>
+                <div class="tag N10">Спагетти-вестерн</div>
+                <div class="tag N11">Режиссёр</div>
+                <div class="tag N12">Нелинейность</div>
+                <div class="tag N13">Диалоги</div>
+                <div class="tag N14">Убить Билла</div>
+                <div class="tag N15">Однажды в Голливуде</div>
+                <div class="tag N16">Город грехов</div>
+            </div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

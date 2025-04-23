@@ -70,11 +70,57 @@
                     return;
                 }
 
+                inputA.style.color = '';
+                inputA.style.borderColor = '';
                 inputB.style.color = '';
                 inputB.style.borderColor = '';
 
                 let result = a / b;
                 alert('Деление ' + a + ' на ' + b + ' равно ' + result);
+            }
+            function showPow() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+
+                if (isNaN(a)) {
+                    alert('ОШИБКА! Введите числовое значение в первое поле');
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    return;
+                }
+
+                if (isNaN(b)) {
+                    alert('ОШИБКА! Введите числовое значение во второе поле');
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+
+                if (a === 0 && b === 0) {
+                    alert('Оба числа не могут быть равны нулю');
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                }
+
+                inputA.style.color = '';
+                inputA.style.borderColor = '';
+                inputB.style.color = '';
+                inputB.style.borderColor = '';
+
+                let result = Math.pow(a, b);
+                alert('Число ' + a + ' в степени ' + b + ' равно ' + result);
             }
             function showAuthor() {
                 let author = 'Автор страницы: \nАртемченко Елизавета Сергеевна';
@@ -113,6 +159,7 @@
             <div class="message" onclick="showDiff()">Найти разность чисел</div>
             <div class="message" onclick="showProd()">Найти произведение</div>
             <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+            <div class="message" onclick="showPow()">Возвести в степень</div>
             <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         </main>
 

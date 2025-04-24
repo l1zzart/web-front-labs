@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+
+        <script>
+            function calculateTotal() {
+                let apples = parseInt(document.getElementById('apples').value);
+                let bananas = parseInt(document.getElementById('bananas').value);
+                let oranges = parseInt(document.getElementById('oranges').value);
+                let melons = parseInt(document.getElementById('melons').value);
+                let grapes = parseInt(document.getElementById('grapes').value);
+
+                let applePrice = 100;
+                let bananaPrice = 80;
+                let orangePrice = 150;
+                let melonPrice = 300;
+                let grapePrice = 200;
+
+                let total = (apples * applePrice) + (bananas * bananaPrice) + (oranges * orangePrice) + (melons * melonPrice) + (grapes * grapePrice);
+
+                document.getElementById('total').innerText = total;
+                document.getElementById('total_sum').style.display = 'block';
+            }
+            function clearCart() {
+                document.getElementById('apples').value = '';
+                document.getElementById('bananas').value = '';
+                document.getElementById('oranges').value = '';
+                document.getElementById('melons').value = '';
+                document.getElementById('grapes').value = '';
+                document.getElementById('total_sum').style.display = 'none';
+            }
+        </script>
+
+        <style>
+            main {
+                font-family: sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+            }
+            .container {
+                background-color: rgb(251, 182, 253);  
+                border: 2px solid purple;
+                padding: 20px;         
+                margin: 20px;         
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+            .item {
+                margin-bottom: 10px;
+            }
+            .item label { 
+                display: block; 
+                margin-bottom: 5px; 
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+
+        <main>
+            <div class="container"> 
+                <h1>Корзина товаров</h1>
+
+                <div class="item">
+                    <label for="apples">Яблоки (100р/шт):</label>
+                    <input type="number" id="apples" min="0" placeholder="Введите кол-во">
+                </div>
+            
+                <div class="item">
+                    <label for="bananas">Бананы (80р/шт):</label>
+                    <input type="number" id="bananas" min="0" placeholder="Введите кол-во">
+                </div>
+            
+                <div class="item">
+                    <label for="oranges">Апельсины (150р/шт):</label>
+                    <input type="number" id="oranges" min="0" placeholder="Введите кол-во">
+                </div>
+            
+                <div class="item">
+                    <label for="melons">Дыни (300р/шт):</label>
+                    <input type="number" id="melons" min="0" placeholder="Введите кол-во">
+                </div>
+            
+                <div class="item">
+                    <label for="grapes">Виноград (200р/шт):</label>
+                    <input type="number" id="grapes" min="0" placeholder="Введите кол-во">
+                </div>            
+
+                <button onclick="calculateTotal()">Рассчитать</button>
+                <button onclick="clearCart()">Очистить</button>
+
+                <p id="total_sum" style="display: none;">Итоговая сумма: <span id='total'>0</span> руб.</p>
+            </div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

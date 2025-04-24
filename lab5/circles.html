@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+
+        <style>
+            main {
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                position: relative;
+                height: calc(100vh - 100px);
+            }
+            .circle {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                border: 3px solid white;
+                color: white;
+                font-size: 24px;
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: absolute;
+                cursor: pointer;
+                transition: all 0.7s ease;
+            }
+            .hidden {
+                opacity: 0;
+                transform: scale(0);
+            }
+            #resetButton {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                z-index: 10;
+                background-color: rgb(248, 216, 249);  
+            }
+          </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+
+        <main>
+            <button id="resetButton">Показать все круги</button>
+
+            <div class="circle" style="background-color: red;     left: 100px; top: 100px;">1</div>
+            <div class="circle" style="background-color: green;   left: 250px; top: 80px;">2</div>
+            <div class="circle" style="background-color: blue;    left: 400px; top: 120px;">3</div>
+            <div class="circle" style="background-color: orange;  left: 550px; top: 200px;">4</div>
+            <div class="circle" style="background-color: purple;  left: 700px; top: 160px;">5</div>
+            <div class="circle" style="background-color: teal;    left: 850px; top: 90px;">6</div>
+            <div class="circle" style="background-color: pink;    left: 200px; top: 300px;">7</div>
+            <div class="circle" style="background-color: brown;   left: 350px; top: 350px;">8</div>
+            <div class="circle" style="background-color: gray;    left: 500px; top: 320px;">9</div>
+            <div class="circle" style="background-color: gold;    left: 650px; top: 280px;">10</div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+
+        <script>
+            const circles = document.querySelectorAll('.circle');
+            const resetButton = document.getElementById('resetButton');
+    
+            circles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    circle.classList.add('hidden');
+                });
+            });
+    
+            resetButton.addEventListener('click', () => {
+                circles.forEach(circle => {
+                    circle.classList.remove('hidden');
+                });
+            });
+        </script>
+    </body>
+</html>

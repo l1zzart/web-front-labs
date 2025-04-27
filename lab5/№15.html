@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 5</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+
+        <style>
+            #filterImage {
+                transition: filter 0.3s ease;
+            }
+        </style>
+
+        <script>
+            function applyInvertByMouse(event) {
+                let img = document.getElementById('filterImage');
+                let filterNameElement = document.getElementById('filterName');
+                let filterValueElement = document.getElementById('filterValue');
+                let rect = img.getBoundingClientRect();
+                let x = event.clientX - rect.left;
+                let width = rect.width;
+                let filterValue = Math.round((x / width) * 100);
+                filterValue = Math.max(0, Math.min(100, filterValue));
+
+                let filter = '';
+                let filterName = 'none';
+                let filterValueText = '0%';
+
+                if (event.ctrlKey) {
+                    filter = 'blur(' + (filterValue / 10) + 'px)';
+                    filterName = 'blur (Ctrl)';
+                    filterValueText = (filterValue / 10) + 'px';
+                } else if (event.altKey) {
+                    filter = 'grayscale(' + (filterValue / 100) + ')';
+                    filterName = 'grayscale (Alt)';
+                    filterValueText = filterValue + '%';
+                } else if (event.shiftKey) {
+                    filter = 'sepia(' + (filterValue / 100) + ')';
+                    filterName = 'sepia (Shift)';
+                    filterValueText = filterValue + '%';
+                } else {
+                    filter = 'invert(' + filterValue + '%)';
+                    filterName = 'invert (mouse)';
+                    filterValueText = filterValue + '%';
+                }
+
+                img.style.filter = filter;
+                filterNameElement.innerText = filterName + ' ';
+                filterValueElement.innerText = filterValueText;
+            }
+
+            function resetMouseFilter() {
+                let img = document.getElementById('filterImage');
+                let filterNameElement = document.getElementById('filterName');
+                let filterValueElement = document.getElementById('filterValue');
+                img.style.filter = 'none';
+                filterNameElement.innerText = 'none ';
+                filterValueElement.innerText = '0%';
+            }
+        </script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+        </header>
+
+        <main>
+            <div>Наведите курсор на изображение, чтобы применить фильтр invert.</div>
+            <div>Удерживайте клавиши Ctrl, Alt или Shift, чтобы применить фильтры blur, grayscale, sepia соответственно.</div>
+            <div><img src="skyline.jpg" id="filterImage" width="100%" height="auto" onmousemove="applyInvertByMouse(event)" onmouseleave="resetMouseFilter()"></div>
+            <div>Фильтр: <span id="filterName">none </span><span id="filterValue">0%</span></div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

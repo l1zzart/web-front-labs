@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList');
+                let html = '';
+
+                for (let i = 0; i < books.length; i++) {
+                    const book = books[i];
+
+                    let bookStyle = '';
+                    if (book.isBestseller) {
+                        bookStyle += 'font-weight: bold; color: yellow;';
+                    }
+                    if (!book.inStock) {
+                        bookStyle += 'opacity: 0.5; font-style: italic;'; 
+                    }
+
+                    html += `
+                        <div style="${bookStyle}">
+                            <b>${book.author}.</b>
+                            <i>${book.name}</i>
+                            &mdash; ${book.publicationYear}
+                            <span >Цена: ${book.price} ₽</span>
+                            ${!book.inStock ? '<span> (Нет в наличии)</span>' : ''}
+                        </div>
+                    `;
+                }
+
+                bookList.innerHTML = html;
+            }
+        </script>
+    </head>
+    <body onload="showBooks()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+
+        <main>
+            <h1 style = "text-align: center;">Список книг</h1>
+            <div id="bookList">
+
+            </div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

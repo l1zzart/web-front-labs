@@ -34,9 +34,33 @@
 
                 localeOutput.innerHTML = html;
             }
+
+            function changeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                header.style.color = rgb;
+            }
+
+            let timerNum;
+
+            function startChangeColors() {
+                changeColors();
+                timerNum = setInterval(changeColors, 500); 
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() {
+                clearInterval(timerNum);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
         </script>
 
         <style>
+            header {
+                transition: color 0.7s ease;
+            }
             #current-date, #locale-dates {
                 background-color: #9d85eb;
                 border-radius: 8px;
@@ -61,6 +85,10 @@
             <div id="current-date"></div>
             <h2>Дата и время для разных локалей:</h2>
             <div id="locale-dates"></div>
+            <div>
+                <button onclick="startChangeColors()" id="start-btn">Старт</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+            </div>
         </main>
 
         <footer>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+
+    <style>
+        #diag {
+            background-color: #e8e8e8;
+            width: 950px;
+            height: 350px;
+            border: 2px solid #b0c4de;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: flex-end;
+            margin-bottom: 10px;
+        }
+        .bar {
+            width: 24px;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            cursor: pointer;
+            margin: 0 1px;
+        }
+        .min-bar {
+            background-color: #0000cc;
+            width: 100%;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .max-bar {
+            background-color: #b0e0e6;
+            width: 100%;
+        }
+        .selected .min-bar {
+            background-color: #ff6347 !important;
+        }
+        .selected .max-bar {
+            background-color: #ffc0cb !important;
+        }
+        .bar-label {
+            font-size: 12px;
+            color: #222;
+            margin-bottom: 2px;
+        }
+        #controls {
+            margin-bottom: 8px;
+        }
+        #info {
+            margin-top: 8px;
+            font-size: 1.1em;
+        }
+    </style>
+
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+
+        <main>
+            <div id="diag"></div>
+            <div id="controls">
+                Номер месяца:
+                <input type="number" id="dayInput" min="1" max="30" placeholder="n">
+                <button onclick="highlightDay()">найти</button>
+            </div>
+            <div id="info"></div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+
+        <script>
+            const days = 30;
+            const minTemps = [];
+            const maxTemps = [];
+            for (let i = 0; i < days; i++) {
+                let min = Math.floor(Math.random() * 11) + 5;   
+                let max = Math.floor(Math.random() * 13) + 28;   
+                if (max - min < 5) max = min + 5; 
+                minTemps.push(min);
+                maxTemps.push(max);
+            }
+
+            const diag = document.getElementById('diag');
+            const maxTempValue = Math.max(...maxTemps);
+            const diagHeight = diag.clientHeight;
+            const k = diagHeight / (maxTempValue + 5); 
+
+            let selectedBar = null;
+
+            for (let i = 0; i < days; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.dataset.day = i + 1;
+
+                const maxDiv = document.createElement('div');
+                maxDiv.className = 'max-bar';
+                maxDiv.style.height = ((maxTemps[i] - minTemps[i]) * k) + 'px';
+                maxDiv.title = `Максимум: ${maxTemps[i]}°C`;
+
+                const minDiv = document.createElement('div');
+                minDiv.className = 'min-bar';
+                minDiv.style.height = (minTemps[i] * k) + 'px';
+                minDiv.title = `Минимум: ${minTemps[i]}°C`;
+
+                const label = document.createElement('div');
+                label.className = 'bar-label';
+                label.textContent = `${maxTemps[i]}°C`;
+
+                bar.appendChild(minDiv);
+                bar.appendChild(maxDiv);
+                bar.appendChild(label);
+
+                bar.onclick = function() {
+                    selectBar(i + 1);
+                    document.getElementById('dayInput').value = i + 1;
+                };
+
+                diag.appendChild(bar);
+            }
+
+            function selectBar(day) {
+                if (selectedBar) selectedBar.classList.remove('selected');
+                const bars = document.querySelectorAll('.bar');
+                selectedBar = bars[day - 1];
+                selectedBar.classList.add('selected');
+                document.getElementById('info').innerHTML =
+                    `Минимальная температура: <b>${minTemps[day - 1]}°C</b><br>Максимальная температура: <b>${maxTemps[day - 1]}°C</b>`;
+            }
+
+            function highlightDay() {
+                const day = parseInt(document.getElementById('dayInput').value, 10);
+                if (day >= 1 && day <= days) {
+                    selectBar(day);
+                }
+            }
+        </script>
+    </body>
+</html>

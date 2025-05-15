@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32">
+
+        <script>
+            function showDate() {
+                let out = document.getElementById('current-date');
+                let today = new Date();
+                out.innerHTML = today.toLocaleString('ru-RU');
+
+                const locales = {
+                    'ru-RU': 'Дата и время для русской локали',
+                    'en-US': 'Дата и время для локали США',
+                    'de-DE': 'Дата и время для локали Германии',
+                    'fr-FR': 'Дата и время для локали Франции',
+                    'ja-JP': 'Дата и время для локали Японии',
+                    'ar-AE': 'Дата и время для локали ОАЭ'
+                };
+
+                let localeOutput = document.getElementById('locale-dates');
+                let html = '';
+
+                for (const locale in locales) {
+                    const dateString = today.toLocaleString(locale);
+                    html += `<div>${locales[locale]}: ${dateString}</div>`;
+                }
+
+                localeOutput.innerHTML = html;
+            }
+        </script>
+
+        <style>
+            #current-date, #locale-dates {
+                background-color: #9d85eb;
+                border-radius: 8px;
+                padding: 15px;
+                font-size: 1.1em;
+                color: #2c3e50;
+                box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+                margin-bottom: 20px;
+            }
+            #locale-dates div {
+                margin-bottom: 8px;
+            }
+        </style>
+    </head>
+    <body onload="showDate()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+
+        <main>
+            <h2>Дата и время для текущей локали:</h2>
+            <div id="current-date"></div>
+            <h2>Дата и время для разных локалей:</h2>
+            <div id="locale-dates"></div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+    </body>
+</html>

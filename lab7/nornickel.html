@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Артемченко Елизавета Сергеевна. Лабораторная 7</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="icon" href="../favicon.ico">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <script src="nornickel-data.js"></script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+        </header>
+
+        <main>  
+            <button id="nn-btn" onclick="showNornickel()">Курс акций Норникеля</button>
+            <div id="nornickel-table-container"></div>
+            <div id="nornickel-stats"></div>
+        </main>
+
+        <footer>
+            &copy; Артемченко Елизавета, ФБИ-33, 2025
+        </footer>
+
+        <script>
+            function showNornickel() {
+                document.getElementById('nn-btn').style.display = 'none';
+                let container = document.getElementById('nornickel-table-container');
+                let table = document.createElement('table');
+                table.border = 1;
+                table.style.marginTop = '10px';
+
+                let header = table.insertRow();
+                header.insertCell().innerText = 'Дата';
+                header.insertCell().innerText = 'Цена акций';
+                header.insertCell().innerText = 'Разница';
+
+                for (let i = 0; i < nn_dates.length; i++) {
+                    let row = table.insertRow();
+                    row.insertCell().innerText = nn_dates[i];
+                    row.insertCell().innerText = nn_prices[i];
+                    let diffCell = row.insertCell();
+                    if (i === 0) {
+                        diffCell.innerText = '–';
+                    } else {
+                        let diff = (nn_prices[i] - nn_prices[i - 1]).toFixed(2);
+                        diffCell.innerText = diff > 0 ? '+' + diff : diff;
+                        if (diff > 0) diffCell.style.color = 'green';
+                        else if (diff < 0) diffCell.style.color = 'red';
+                    }
+                }
+                container.appendChild(table);
+
+                let sum = nn_prices.reduce((a, b) => a + b, 0);
+                let avg = (sum / nn_prices.length).toFixed(2);
+                let min = Math.min(...nn_prices);
+                let max = Math.max(...nn_prices);
+
+                let stats = document.getElementById('nornickel-stats');
+                stats.innerHTML = `
+                    <p>Среднее значение: <b>${avg}</b></p>
+                    <p>Минимальное значение: <b>${min}</b></p>
+                    <p>Максимальное значение: <b>${max}</b></p>
+                `;
+            }
+        </script>
+    </body>
+</html>
